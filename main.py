@@ -5,7 +5,7 @@ from getpass import getpass
 
 while True:
     print("="*40)
-    print("           Secure File Locker")
+    print("     File CF - Secure File Locker 🔐")
     print("="*40)
     print("1. Encrypt File")
     print("2. Decrypt File")
