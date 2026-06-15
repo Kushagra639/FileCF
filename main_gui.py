@@ -2,7 +2,7 @@ import os
 from tkinter import messagebox
 from encrypt_decrypt import encrypt_file
 from encrypt_decrypt import decrypt_file
-from getpass import getpass
+from tkinter import filedialog
 import customtkinter as ctk
 
 ctk.set_appearance_mode("system")
@@ -64,6 +64,13 @@ def clear_screen(): # Function to clear the current screen by destroying all wid
         print(f" ❌ Error clearing screen: {e}")
         messagebox.showerror("Screen Error", f"Error clearing screen: {e}")
 
+def browse_file(file_entry):
+
+    filename = filedialog.askopenfilename()
+    if filename:
+        file_entry.delete(0, "end")
+        file_entry.insert(0, filename)
+
 def main_menu(): # Function to display the main menu after successful login or registration
     try:
         clear_screen()
@@ -91,8 +98,8 @@ def encrypt_screen(): # Function to display the encryption screen where user can
         bottom_frame.pack(side='bottom', fill='x',padx=20, pady=10)
 
         ctk.CTkLabel(app, text="Encrypt a File", font=ctk.CTkFont(size=20, weight="bold")).pack(pady=10)
-        ctk.CTkLabel(app, text="Enter the path of the file to encrypt (with the file name and extension):").pack(pady=5)
-        file_entry = ctk.CTkEntry(app, width=400)
+        ctk.CTkButton(app, text="Browse", command=lambda: browse_file(file_entry)).pack(pady=10)
+        file_entry = ctk.CTkEntry(app)
         file_entry.pack(pady=5)
 
         ctk.CTkLabel(app, text="Enter the password:").pack(pady=5)
@@ -109,6 +116,7 @@ def encrypt_screen(): # Function to display the encryption screen where user can
             messagebox.showinfo("Success", f"File encrypted successfully!\nEncrypted file saved as: {filename}.encrypted")
             main_menu()
 
+        ctk.CTkButton(app, text="Encrypt", command=encrypt_action).pack(pady=10)
         ctk.CTkButton(bottom_frame, text="Back", command=lambda: main_menu()).pack(side='left')
         ctk.CTkButton(bottom_frame, text="Change Theme", command=change_theme).pack(side='right', pady=5)
     except Exception as e:
@@ -123,7 +131,7 @@ def decrypt_screen(): # Function to display the decryption screen where user can
         bottom_frame.pack(side='bottom', fill='x',padx=20, pady=10)
         
         ctk.CTkLabel(app, text="Decrypt a File", font=ctk.CTkFont(size=20, weight="bold")).pack(pady=10)
-        ctk.CTkLabel(app, text="Enter the path of the file to decrypt (with the file name and extension):").pack(pady=5)
+        ctk.CTkButton(app, text="Browse", command=lambda: browse_file(file_entry)).pack(pady=10)
         file_entry = ctk.CTkEntry(app, width=400)
         file_entry.pack(pady=5)
 
@@ -140,7 +148,8 @@ def decrypt_screen(): # Function to display the decryption screen where user can
             decrypt_file(filename, password)
             messagebox.showinfo("Success", f"File decrypted successfully!\nFile saved as: {filename.replace('.encrypted', '')}")
             main_menu()
-
+        
+        ctk.CTkButton(bottom_frame, text="Decrypt", command=decrypt_action).pack(pady=10)
         ctk.CTkButton(bottom_frame, text="Back", command=lambda: main_menu()).pack(side='left')
         ctk.CTkButton(bottom_frame, text="Change Theme", command=change_theme).pack(side='right', pady=5)
     except Exception as e:
