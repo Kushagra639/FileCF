@@ -14,38 +14,6 @@ app.geometry("900x700")
 app.resizable(width=True, height=True)
 
 
-# while True:
-#     print("=======================================")
-#     print("           Secure File Locker          ")
-#     print("=======================================")
-#     print("1. Encrypt File")
-#     print("2. Decrypt File")
-#     print("3. Exit")
-#     choice = input("Enter your choice: ")
-
-#     if choice == "1":
-#         filename = input("Enter the path of the file to encrypt (with the file name and extension): ")
-#         filename = filename.strip()
-#         filename = filename.strip('"')
-#         if not os.path.isfile(filename):
-#             print("File not found.")
-#             continue
-#         password = getpass("Enter the password: ")
-#         encrypt_file(filename, password)
-#     elif choice == "2":
-#         filename = input("Enter the path of the file to decrypt (with the file name and extension): ")
-#         filename = filename.strip()
-#         filename = filename.strip('"')
-#         if not os.path.isfile(filename):
-#             print("File not found.")
-#             continue
-#         password = getpass("Enter the password: ")
-#         decrypt_file(filename, password)
-#     elif choice == "3":
-#         break
-#     else:
-#         print("Invalid choice. Please try again.")
-
 def change_theme(): # Function to toggle between light and dark themes
     try:
         if ctk.get_appearance_mode() == "Dark":
@@ -132,7 +100,7 @@ def decrypt_screen(): # Function to display the decryption screen where user can
         
         ctk.CTkLabel(app, text="Decrypt a File", font=ctk.CTkFont(size=20, weight="bold")).pack(pady=10)
         ctk.CTkButton(app, text="Browse", command=lambda: browse_file(file_entry)).pack(pady=10)
-        file_entry = ctk.CTkEntry(app, width=400)
+        file_entry = ctk.CTkEntry(app)
         file_entry.pack(pady=5)
 
         ctk.CTkLabel(app, text="Enter the password:").pack(pady=5)
@@ -149,7 +117,7 @@ def decrypt_screen(): # Function to display the decryption screen where user can
             messagebox.showinfo("Success", f"File decrypted successfully!\nFile saved as: {filename.replace('.encrypted', '')}")
             main_menu()
         
-        ctk.CTkButton(bottom_frame, text="Decrypt", command=decrypt_action).pack(pady=10)
+        ctk.CTkButton(app, text="Decrypt", command=decrypt_action).pack(pady=10)
         ctk.CTkButton(bottom_frame, text="Back", command=lambda: main_menu()).pack(side='left')
         ctk.CTkButton(bottom_frame, text="Change Theme", command=change_theme).pack(side='right', pady=5)
     except Exception as e:
