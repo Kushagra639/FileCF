@@ -77,6 +77,7 @@ def main_menu(): # Function to display the main menu after successful login or r
         ]
         for idx, opt in enumerate(options, 1):
             ctk.CTkButton(app, text=f"{idx}. {opt}", command=lambda i=idx: option_selected(i)).pack(pady=4) # Creates buttons for each option in the main menu
+        
         ctk.CTkButton(bottom_frame, text="Change Theme", command=change_theme).pack(side='right', pady=5)
     except Exception as e:
         print(f" ❌ Error in main menu: {e}")
@@ -85,6 +86,9 @@ def main_menu(): # Function to display the main menu after successful login or r
 def encrypt_screen(): # Function to display the encryption screen where user can select a file to encrypt and enter the password
     try:
         clear_screen()
+        
+        bottom_frame = ctk.CTkFrame(master=app)
+        bottom_frame.pack(side='bottom', fill='x',padx=20, pady=10)
 
         ctk.CTkLabel(app, text="Encrypt a File", font=ctk.CTkFont(size=20, weight="bold")).pack(pady=10)
         ctk.CTkLabel(app, text="Enter the path of the file to encrypt (with the file name and extension):").pack(pady=5)
@@ -105,7 +109,8 @@ def encrypt_screen(): # Function to display the encryption screen where user can
             messagebox.showinfo("Success", f"File encrypted successfully!\nEncrypted file saved as: {filename}.encrypted")
             main_menu()
 
-        ctk.CTkButton(app, text="Encrypt", command=encrypt_action).pack(pady=10)
+        ctk.CTkButton(bottom_frame, text="Back", command=lambda: main_menu()).pack(side='left')
+        ctk.CTkButton(bottom_frame, text="Change Theme", command=change_theme).pack(side='right', pady=5)
     except Exception as e:
         print(f" ❌ Error in encryption screen: {e}")
         messagebox.showerror("Encryption Screen Error", f"Error in encryption screen: {e}")
@@ -113,7 +118,10 @@ def encrypt_screen(): # Function to display the encryption screen where user can
 def decrypt_screen(): # Function to display the decryption screen where user can select a file to decrypt and enter the password
     try:
         clear_screen()
-
+        
+        bottom_frame = ctk.CTkFrame(master=app)
+        bottom_frame.pack(side='bottom', fill='x',padx=20, pady=10)
+        
         ctk.CTkLabel(app, text="Decrypt a File", font=ctk.CTkFont(size=20, weight="bold")).pack(pady=10)
         ctk.CTkLabel(app, text="Enter the path of the file to decrypt (with the file name and extension):").pack(pady=5)
         file_entry = ctk.CTkEntry(app, width=400)
@@ -133,7 +141,8 @@ def decrypt_screen(): # Function to display the decryption screen where user can
             messagebox.showinfo("Success", f"File decrypted successfully!\nFile saved as: {filename.replace('.encrypted', '')}")
             main_menu()
 
-        ctk.CTkButton(app, text="Decrypt", command=decrypt_action).pack(pady=10)
+        ctk.CTkButton(bottom_frame, text="Back", command=lambda: main_menu()).pack(side='left')
+        ctk.CTkButton(bottom_frame, text="Change Theme", command=change_theme).pack(side='right', pady=5)
     except Exception as e:
         print(f" ❌ Error in decryption screen: {e}")
         messagebox.showerror("Decryption Screen Error", f"Error in decryption screen: {e}")
