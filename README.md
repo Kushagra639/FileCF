@@ -1,4 +1,6 @@
-# Secure File Locker
+# File CF
+
+File CF is a Secure File Locker that can encrypt and decrypt any file using a password provided by the user.
 
 ## ✨ Features
 
