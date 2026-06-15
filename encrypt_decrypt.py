@@ -3,6 +3,7 @@ import base64
 from cryptography.fernet import Fernet
 from cryptography.hazmat.primitives import hashes
 from cryptography.hazmat.primitives.kdf.pbkdf2 import PBKDF2HMAC
+from cryptography.fernet import InvalidToken
 
 def generate_key(password, salt):
 
@@ -52,6 +53,8 @@ def decrypt_file(file, password):
             fn.write(decrypted)
 
         print("Decryption successful.\nFile saved as: " + file.replace(".encrypted", ""))
+    except InvalidToken:
+        print("Decryption failed. Incorrect password.")
     
     except Exception as e:
         print("Decryption failed. Check your password and try again.")
