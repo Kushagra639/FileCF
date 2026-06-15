@@ -22,24 +22,24 @@ def generate_key(password, salt):
 
     return key
 
-def encrypt_file(file, password):
+def encrypt_file(filename, password):
     salt = os.urandom(16)
     key = generate_key(password, salt)
     fernet = Fernet(key)
     
-    with open(file, 'rb') as f:
+    with open(filename, 'rb') as f:
         original = f.read()
     
     encrypted = fernet.encrypt(original)
 
-    with open(file+".encrypted", 'wb') as fn:
+    with open(filename+".encrypted", 'wb') as fn:
         fn.write(salt)
         fn.write(encrypted)
 
-    print("Encryption successful.\nEncrypted file saved as: " + file + ".encrypted")
+    print("Encryption successful.\nEncrypted file saved as: " + filename + ".encrypted")
 
-def decrypt_file(file, password):
-    with open(file, 'rb') as f:
+def decrypt_file(filename, password):
+    with open(filename, 'rb') as f:
         salt = f.read(16)
         encrypted = f.read()
     
@@ -49,10 +49,10 @@ def decrypt_file(file, password):
     try:
         decrypted = fernet.decrypt(encrypted)
 
-        with open(file.replace(".encrypted", ""), 'wb') as fn:
+        with open(filename.replace(".encrypted", ""), 'wb') as fn:
             fn.write(decrypted)
 
-        print("Decryption successful.\nFile saved as: " + file.replace(".encrypted", ""))
+        print("Decryption successful.\nFile saved as: " + filename.replace(".encrypted", ""))
     except InvalidToken:
         print("Decryption failed. Incorrect password.")
     
