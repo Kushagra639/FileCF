@@ -9,7 +9,7 @@ ctk.set_appearance_mode("system")
 ctk.set_default_color_theme("pastel_theme.json") # Sets the default color theme to a custom pastel theme (given alongside this code), please change the path to the theme file as per your system
 
 app = ctk.CTk()
-app.title("Secure File Locker 🔐") 
+app.title("File CF - Secure File Locker 🔐") 
 app.geometry("900x700") 
 app.resizable(width=True, height=True)
 
@@ -46,7 +46,7 @@ def main_menu(): # Function to display the main menu after successful login or r
         bottom_frame = ctk.CTkFrame(master=app)
         bottom_frame.pack(side='bottom', fill='x',padx=20, pady=10)
 
-        ctk.CTkLabel(app, text="Welcome to Secure File Locker!", font=ctk.CTkFont(size=20, weight="bold")).pack(pady=10)
+        ctk.CTkLabel(app, text="Welcome to File CF!", font=ctk.CTkFont(size=20, weight="bold")).pack(pady=10)
         options = [
             "Encrypt File", "Decrypt File", "Exit"
         ]
