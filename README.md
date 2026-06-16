@@ -1,49 +1,251 @@
-# File CF - Secure File Locker 🔐
+# 🔐 FILE CF - Secure File Locker
 
-File CF is a Secure File Locker that can encrypt and decrypt any file using a password provided by the user.
+A lightweight Python-based file encryption tool that allows users to securely encrypt and decrypt files using a password.
 
-## ✨ Features
-
-✓ Password-based encryption.
-
-✓ PBKDF2 key derivation.
-
-✓ Random salt generation.
-
-✓ Fernet authenticated encryption.
-
-✓ Supports text, PDF, image, binary, and other file extensions.
-
-✓ Cross-platform Python implementation.
+This project was built as part of my cybersecurity learning journey and demonstrates concepts such as password-based encryption, key derivation, cryptographic salts, authenticated encryption, and secure file handling.
 
 ---
 
-## ⚙️ Setup
+## 🚀 Features
 
-# Install Libraries
-Make sure to install the following dependencies by running the following code in *PowerShell/Terminal* :
-```bash 
+### 🔑 Password-Based Encryption
+
+Encrypt files using a user-provided password.
+
+The encryption key is derived securely from the password using PBKDF2.
+
+---
+
+### 🧂 Random Salt Generation
+
+A unique cryptographic salt is generated for every encrypted file.
+
+This protects against rainbow-table attacks and ensures that identical passwords generate different encryption keys.
+
+---
+
+### 🔒 Secure Key Derivation
+
+Uses:
+
+- PBKDF2-HMAC-SHA256
+- 480,000 iterations
+- 256-bit encryption keys
+
+to derive strong encryption keys from user passwords.
+
+---
+
+### 🛡️ Fernet Authenticated Encryption
+
+Uses the Fernet implementation from the Cryptography library.
+
+Provides:
+
+- Confidentiality
+- Integrity Verification
+- Authentication
+
+This prevents unauthorized modification of encrypted files.
+
+---
+
+### 📁 Multi-File Support
+
+Supports virtually any file type including:
+
+- Text Files (.txt)
+- PDFs (.pdf)
+- Images (.png, .jpg, .jpeg)
+- Videos
+- ZIP Archives
+- Binary Files
+- Custom Extensions
+
+---
+
+### 🖥️ Graphical User Interface
+
+Built using CustomTkinter for a modern desktop experience.
+
+Features:
+
+- File selection
+- Password input
+- Encryption & Decryption
+- Theme switching
+- User-friendly dialogs
+
+---
+
+### 🌗 Theme Support
+
+Supports:
+
+- Light Mode
+- Dark Mode
+- Custom Pastel Theme
+
+---
+
+## 📸 Screenshots
+
+### Main Menu
+
+![Main Menu Dark](/screenshots/screenshot-1.png)
+![Main Menu Light](/screenshots/screenshot-2.png)
+
+### Encryption Screen
+
+![Encrypt Screen](/screenshots/screenshot-3.png)
+
+### Decryption Screen
+
+![Decrypt Screen](/screenshots/screenshot-4.png)
+
+---
+
+## 🛠️ Technologies Used
+
+- Python 3
+- Cryptography
+- CustomTkinter
+- Tkinter
+
+---
+
+## 📦 Installation & Setup
+
+### Install Dependencies
+
+```bash
 pip install cryptography customtkinter
 ```
 
-# Download the code
-- Download/Copy and Paste the code from here: [Pastel Theme](/pastel_theme.json), [Encrypt Decrypt](/encrypt_decrypt.py), AND [Main GUI](/main_gui.py) (**Recommended**) OR [Main](/main.py)
+---
 
-- Store the `main.py` and `encrypt_decrypt.py` files in the same folder.
+### Download the Source Code
 
-# Edit the Code
-At line #9 in `main_gui.py`, in
-```bash
+*GUI version* (**Recommended**):
+
+- [`main_gui.py`](/main_gui.py)
+- [`encrypt_decrypt.py`](/encrypt_decrypt.py)
+- [`pastel_theme.json`](/pastel_theme.json)
+
+Alternatively, the *console version* can be used:
+
+- [`main.py`](/main.py)
+- [`encrypt_decrypt.py`](/encrypt_decrypt.py)
+
+**Store all files in the same project folder.**
+
+---
+
+### Configure Theme File
+
+In `main_gui.py`, locate:
+
+```python
 ctk.set_default_color_theme("pastel_theme.json")
 ```
-change `pastel_theme.json` to the actual path of your Theme file.
 
+Replace:
 
-# Run
+```python
+"pastel_theme.json"
+```
+
+with the full path to your theme file, if necessary.
+
+Example:
+
+```python
+ctk.set_default_color_theme(
+    "C:\\Users\\YourName\\Desktop\\FileCF\\pastel_theme.json"
+)
+```
+
+---
+
+## ▶️ Usage
+
+Run:
+
+```bash
+python main_gui.py
+```
+
+or
 
 ```bash
 python main.py
 ```
+
+Choose whether to encrypt or decrypt a file, select a file, and enter a password.
+
+---
+
+## 📋 Example Workflow
+
+### Encryption
+
+```text
+Select File
+       ↓
+Enter Password
+       ↓
+Generate Salt
+       ↓
+Derive Encryption Key
+       ↓
+Encrypt File
+       ↓
+Save as:
+example.pdf.encrypted
+```
+
+---
+
+### Decryption
+
+```text
+Select Encrypted File
+          ↓
+Enter Password
+          ↓
+Extract Salt
+          ↓
+Derive Key
+          ↓
+Decrypt File
+          ↓
+Restore Original File
+```
+
+---
+
+## ⚠️ Disclaimer
+
+This project is intended for educational and defensive security purposes only.
+
+While the project uses industry-standard cryptographic libraries, it has not undergone independent security auditing and should not be relied upon for protecting highly sensitive or mission-critical data.
+
+Users are responsible for evaluating its suitability for their specific use case.
+
+---
+
+## 🎯 Learning Objectives
+
+This project helped me practice:
+
+- Python Programming
+- Cryptography Fundamentals
+- Password-Based Encryption
+- PBKDF2 Key Derivation
+- Secure File Handling
+- GUI Development
+- Exception Handling
+- Cybersecurity Fundamentals
 
 ---
 
@@ -77,11 +279,13 @@ Kushagra Aggarwal
   </a>
 </p>
 
-
 ---
-## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+## 📜 License
+
+This project is licensed under the MIT License.
+
+See the LICENSE file for details.
 
 ---
 
