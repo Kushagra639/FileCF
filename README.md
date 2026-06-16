@@ -92,16 +92,16 @@ Supports:
 
 ### Main Menu
 
-![Main Menu Dark](/screenshots/screenshot-1.png)
-![Main Menu Light](/screenshots/screenshot-2.png)
+![Main Menu Dark](/screenshots/Screenshot-1.png)
+![Main Menu Light](/screenshots/Screenshot-2.png)
 
 ### Encryption Screen
 
-![Encrypt Screen](/screenshots/screenshot-3.png)
+![Encrypt Screen](/screenshots/Screenshot-3.png)
 
 ### Decryption Screen
 
-![Decrypt Screen](/screenshots/screenshot-4.png)
+![Decrypt Screen](/screenshots/Screenshot-4.png)
 
 ---
 
